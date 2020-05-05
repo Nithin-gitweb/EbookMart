@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "ListBook";
+
+
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
+
+<center><h2>Browse through our Collection of Books in the gallery
+    @Html.ActionLink("Request for a new Book","RequestSection",new { userid = @ViewBag.RandomNumber })
+</h2>
+    </center>
+<!--ViewBag.RandomNumber-->
+<p style="position: absolute;
+  right: 0px;
+  width: 250px;
+  padding: 2px">
+    @Html.ActionLink("View My wishlist", "ViewWishList", new { userId = ViewBag.RandomNumber }) |
+    @Html.ActionLink("View My Orders", "ViewOrders", new { userId = ViewBag.RandomNumber }) 
+</p>
+<table border="0" cellspacing="2" cellpadding="20" style="border-radius: 0px 0px">
+    @foreach (var item in ViewBag.bookdata)
+    {
+
+        <tr>
+
+            <td><img src="@Url.Content(item.BookCover)" height="200" width="150" alt="@item.BookCover" style="padding: 5px 5px 5px 5px;" /></td>
+            <td style="padding: 10px 20px 10px 20px;">
+                <h4>@item.BookName</h4><br />
+                <h5>Author : @item.BookAuthor | Ratings : @item.GoodReadRatings</h5>
+                <h5>Language : @item.Language | Genre : @item.Genre</h5>
+                <p>
+                    @Html.ActionLink("Add to WishList", "AddToWishList", new { UserId = ViewBag.RandomNumber, BookId = item.id })
+                </p>
+                <p>
+                    @Html.ActionLink("Download Now", "AddToOrder", new { BookId = item.id,UserId = ViewBag.RandomNumber }) |
+                    <a href="#" data-toggle="popover" data-trigger="hover" title="@item.BookName" data-content="@item.BookDescription">Read Description</a>
+                </p>
+
+
+            </td>
+        </tr>
+    }
+</table>
+

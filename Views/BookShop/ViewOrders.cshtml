@@ -1,0 +1,27 @@
+﻿@model List<EBookMart.Models.BookDb>
+@{
+    ViewBag.Title = "ViewOrders";
+}
+
+<h2>My Orders</h2>
+<table>
+    <tr>
+        <th> Order Description</th>
+        <th> Order Item</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                <h3>@item.BookName</h3>
+                <p>@item.BookAuthor</p>
+                <h5>Cost : @item.BookPrice</h5>
+                <p>Date of Purchase : @ViewBag.datetime</p>
+            </td>
+            <td>
+                <img src="@Url.Content(item.BookCover)" height="80" width="60" alt="@item.BookCover" style="padding: 5px 5px 5px 5px;" />
+            </td>
+        </tr>
+    }
+</table>
+

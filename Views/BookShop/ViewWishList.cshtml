@@ -1,0 +1,28 @@
+﻿@model List<EBookMart.Models.BookDb>
+@{
+    ViewBag.Title = "ViewWishList";
+}
+
+<h2>My WishList</h2>
+<table>
+    <tr>
+        <th> Book Cover </th>
+        <th> Book Name</th>
+        <th> Author </th>
+        <th> Price </th>
+        <th> Action </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><img src="@Url.Content(item.BookCover)" height="80" width="60" alt="@item.BookCover" style="padding: 5px 5px 5px 5px;" /></td>
+            <td> @item.BookName </td>
+            <td>@item.BookAuthor</td>
+            <td>@item.BookPrice</td>
+            <td> @Html.ActionLink("Remove from WishList","RemoveFromWishList",new {UserId = ViewBag.userid, BookId = @item.id }) | @Html.ActionLink("BuyNow","RenderPDF",new { fileurl = @item.BookLink })</td>
+        </tr>
+    }
+
+
+</table>
+

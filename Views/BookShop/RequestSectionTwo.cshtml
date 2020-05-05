@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "RequestSectionTwo";
+}
+
+<h2>Request Confirmation</h2>
+
+<h3>Your Request for the book " @Model.RequestDesc " has been accepted and Will be processed in 6-10 hours</h3>
+
+@Html.ActionLink("Back to BookList", "ListBook", new { id = Model.UserId })
+
+
